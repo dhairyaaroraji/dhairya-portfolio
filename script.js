@@ -1,0 +1,1 @@
+const card=document.querySelector('.hero-card');document.addEventListener('mousemove',e=>{if(!card||window.innerWidth<850)return;const x=(e.clientX/window.innerWidth-.5)*8;const y=(e.clientY/window.innerHeight-.5)*-8;card.style.transform=`rotateX(${y}deg) rotateY(${x}deg)`});document.addEventListener('mouseleave',()=>{if(card)card.style.transform='rotate(2deg)'});
