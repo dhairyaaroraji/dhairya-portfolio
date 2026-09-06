@@ -8,10 +8,6 @@
 </head>
 <body>
 
-  <!-- Interactive Custom Cursor -->
-  <div class="cursor-dot"></div>
-  <div class="cursor-blur"></div>
-
   <!-- Background Orbs -->
   <div class="orb orb-a"></div>
   <div class="orb orb-b"></div>
@@ -19,7 +15,6 @@
   <!-- NAVIGATION -->
   <nav class="nav glass">
     <a href="#" class="logo">Dhairya<span>.</span></a>
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
     <div class="navlinks">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
@@ -39,9 +34,7 @@
       </p>
       <div class="actions">
         <a href="#projects" class="btn primary">View Projects ↗</a>
-        <button onclick="copyEmail()" class="btn secondary">
-          Copy Email <span id="copy-msg">Copied!</span>
-        </button>
+        <a href="#contact" class="btn secondary">Get In Touch</a>
       </div>
       <div class="mini-stats">
         <div><strong>2026</strong><span>Graduation</span></div>
@@ -60,7 +53,12 @@
           <i></i><i></i><i></i>
           <span>developer.js</span>
         </div>
-        <pre><code></code></pre>
+        <pre><code><span class="kw">const</span> dhairya = {
+  <span class="kw">role</span>: <span class="str">"CSE Student"</span>,
+  <span class="kw">college</span>: <span class="str">"JIIT Noida"</span>,
+  <span class="kw">focus</span>: [<span class="str">"Web Dev"</span>, <span class="str">"DSA"</span>],
+  <span class="kw">status</span>: <span class="str">"Building Placement Ready 🚀"</span>
+};</code></pre>
       </div>
       <div class="floating-tag tag-one">💻 Web Dev</div>
       <div class="floating-tag tag-two">🚀 Open Source</div>
@@ -125,9 +123,7 @@
         <div class="project-number">01</div>
         <div>
           <p class="project-type">HACKATHON • WATER SECURITY</p>
-          <div class="project-title-row">
-            <h3><a href="#" target="_blank">JalSetu ↗</a></h3>
-          </div>
+          <h3>JalSetu</h3>
           <p>A smart water-security concept combining monitoring, tank automation and a mobile interface to reduce water wastage and improve household visibility.</p>
           <div class="chips">
             <span>IoT</span>
@@ -142,9 +138,7 @@
         <div class="project-number">02</div>
         <div>
           <p class="project-type">AI • EDUCATION</p>
-          <div class="project-title-row">
-            <h3><a href="#" target="_blank">AI Study Buddy ↗</a></h3>
-          </div>
+          <h3>AI Study Buddy</h3>
           <p>An AI-powered study companion for CSE students — dashboard, AI tutor, coding practice, flashcards, study planner and progress tracking, built for learning college subjects and programming in one place.</p>
           <div class="chips">
             <span>React</span>
@@ -154,14 +148,27 @@
         </div>
       </article>
 
-      <!-- 03. Personal Portfolio -->
+      <!-- 03. Placement Ready -->
       <article class="project glass">
         <div class="project-number">03</div>
         <div>
-          <p class="project-type">WEB DEVELOPMENT</p>
-          <div class="project-title-row">
-            <h3><a href="#" target="_blank">Personal Portfolio ↗</a></h3>
+          <p class="project-type">PLACEMENT PREP • WEB APP</p>
+          <h3><a href="https://placement-ready-alpha.vercel.app/" target="_blank">Placement Ready ↗</a></h3>
+          <p>A comprehensive web platform for CSE students to prepare for tech interviews, campus placements, coding practice, and subject revision.</p>
+          <div class="chips">
+            <span>Placement Prep</span>
+            <span>Web App</span>
+            <span>CSE Resources</span>
           </div>
+        </div>
+      </article>
+
+      <!-- 04. Personal Portfolio -->
+      <article class="project glass">
+        <div class="project-number">04</div>
+        <div>
+          <p class="project-type">WEB DEVELOPMENT</p>
+          <h3>Personal Portfolio</h3>
           <p>A responsive, glassmorphism-inspired portfolio designed to showcase my journey, skills and projects.</p>
           <div class="chips">
             <span>HTML/CSS</span>
@@ -171,35 +178,16 @@
         </div>
       </article>
 
-      <!-- 04. To-Do App -->
+      <!-- 05. To-Do App -->
       <article class="project glass">
-        <div class="project-number">04</div>
+        <div class="project-number">05</div>
         <div>
           <p class="project-type">LEARNING PROJECT</p>
-          <div class="project-title-row">
-            <h3><a href="#" target="_blank">To-Do App ↗</a></h3>
-          </div>
+          <h3>To-Do App</h3>
           <p>A simple productivity app built while learning front-end development and JavaScript interactions.</p>
           <div class="chips">
             <span>JavaScript</span>
             <span>DOM Manipulation</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- 05. Placement Ready -->
-      <article class="project glass">
-        <div class="project-number">05</div>
-        <div>
-          <p class="project-type">PLACEMENT PREP • WEB APP</p>
-          <div class="project-title-row">
-            <h3><a href="https://placement-ready-alpha.vercel.app/" target="_blank">Placement Ready ↗</a></h3>
-          </div>
-          <p>A comprehensive web platform for CSE students to prepare for tech interviews, campus placements, coding practice, and subject revision.</p>
-          <div class="chips">
-            <span>Placement Prep</span>
-            <span>Web App</span>
-            <span>CSE Resources</span>
           </div>
         </div>
       </article>
@@ -252,6 +240,5 @@
     <div>Designed & Built with Precision</div>
   </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>
