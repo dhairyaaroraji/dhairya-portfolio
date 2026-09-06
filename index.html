@@ -3,208 +3,255 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Dhairya Arora — CSE student, developer and builder.">
-  <title>Dhairya Arora | CSE Student & Developer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <title>Dhairya Arora | Portfolio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="orb orb-a"></div><div class="orb orb-b"></div>
+
+  <!-- Interactive Custom Cursor -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-blur"></div>
+
+  <!-- Background Orbs -->
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+
+  <!-- NAVIGATION -->
   <nav class="nav glass">
-    <a class="logo" href="#home">DA<span>.</span></a>
+    <a href="#" class="logo">Dhairya<span>.</span></a>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
     <div class="navlinks">
-      <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#journey">Journey</a>
+      <a href="#contact" class="nav-cta">Let's Talk</a>
     </div>
-    <a class="nav-cta" href="mailto:dhairyaarora@example.com">Let's talk ↗</a>
   </nav>
 
-  <main>
-    <section id="home" class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">CSE STUDENT • BUILDER • LEARNER</p>
-        <h1>Hi, I'm <span>Dhairya Arora.</span><br>I build things for the web.</h1>
-        <p class="hero-text">B.Tech CSE student at JIIT Noida, learning by building projects, exploring software development, and turning ideas into useful products.</p>
-        <div class="actions">
-          <a class="btn primary" href="#projects">View my work <span>↗</span></a>
-          <a class="btn secondary" href="https://github.com/dhairyaaroraji" target="_blank" rel="noreferrer">GitHub</a>
-        </div>
-        <div class="mini-stats">
-          <div><strong>01</strong><span>Student</span></div>
-          <div><strong>∞</strong><span>Things to learn</span></div>
-          <div><strong>24/7</strong><span>Building mode</span></div>
-        </div>
-      </div>
-      <div class="hero-card-wrap">
-        <div class="hero-card glass">
-          <div class="card-top"><span class="status"></span> Available to build</div>
-          <div class="code-window">
-            <div class="code-bar"><i></i><i></i><i></i><span>dhairya.js</span></div>
-            <pre><code><span class="kw">const</span> dhairya = {
-  role: <span class="str">"CSE Student"</span>,
-  college: <span class="str">"JIIT Noida"</span>,
-  focus: [
-    <span class="str">"Web Development"</span>,
-    <span class="str">"C++ & DSA"</span>,
-    <span class="str">"Projects"</span>
-  ],
-  mindset: <span class="str">"Build. Learn. Repeat."</span>
-};</code></pre>
-          </div>
-          <div class="floating-tag tag-one">⚡ C++</div>
-          <div class="floating-tag tag-two">✦ Web Dev</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="section">
-      <div class="section-label">01 / ABOUT</div>
-      <div class="about-grid">
-        <div><h2>Curious mind.<br><span>Builder mindset.</span></h2></div>
-        <div class="about-text">
-          <p>I'm Dhairya Arora , a first-year Computer Science & Engineering student at JIIT Noida. I'm currently building my fundamentals in programming and web development while experimenting with projects and hackathons.</p>
-          <p>I don't want to just collect certificates — I want to understand how things work, ship projects, and steadily become a strong software engineer.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills" class="section">
-      <div class="section-label">02 / SKILLS</div>
-      <h2>My current <span>toolbox.</span></h2>
-      <div class="skills-grid">
-        <div class="skill glass"><b>C / C++</b><small>Programming foundations</small><div class="bar"><i style="width:55%"></i></div></div>
-        <div class="skill glass"><b>HTML & CSS</b><small>Web fundamentals</small><div class="bar"><i style="width:70%"></i></div></div>
-        <div class="skill glass"><b>JavaScript</b><small>Learning & building</small><div class="bar"><i style="width:35%"></i></div></div>
-        <div class="skill glass"><b>Git & GitHub</b><small>Version control</small><div class="bar"><i style="width:45%"></i></div></div>
-      </div>
-    </section>
-
-  <section id="projects" class="section">
-  <!-- Heading Section -->
-  <div class="project-heading">
-    <div>
-      <p class="section-label">SELECTED WORKS</p>
-      <h2>Featured Projects<span>.</span></h2>
-    </div>
-    <p>A selection of projects ranging from IoT smart solutions to AI tools and web platforms.</p>
-  </div>
-
-  <!-- Projects Grid -->
-  <div class="projects">
-
-    <!-- 01. JalSetu (Featured) -->
-    <article class="project glass featured">
-      <div class="project-number">01</div>
-      <div>
-        <p class="project-type">HACKATHON • WATER SECURITY</p>
-        <div class="project-title-row">
-          <h3><a href="#" target="_blank">JalSetu ↗</a></h3>
-        </div>
-        <p>A smart water-security concept combining monitoring, tank automation and a mobile interface to reduce water wastage and improve household visibility.</p>
-        <div class="chips">
-          <span>IoT</span>
-          <span>Web/App</span>
-          <span>Smart Monitoring</span>
-        </div>
-      </div>
-    </article>
-
-    <!-- 02. AI Study Buddy -->
-    <article class="project glass">
-      <div class="project-number">02</div>
-      <div>
-        <p class="project-type">AI • EDUCATION</p>
-        <div class="project-title-row">
-          <h3><a href="#" target="_blank">AI Study Buddy ↗</a></h3>
-        </div>
-        <p>An AI-powered study companion for CSE students — dashboard, AI tutor, coding practice, flashcards, study planner and progress tracking, built for learning college subjects and programming in one place.</p>
-        <div class="chips">
-          <span>React</span>
-          <span>AI</span>
-          <span>CSE Tools</span>
-        </div>
-      </div>
-    </article>
-
-    <!-- 03. Personal Portfolio -->
-    <article class="project glass">
-      <div class="project-number">03</div>
-      <div>
-        <p class="project-type">WEB DEVELOPMENT</p>
-        <div class="project-title-row">
-          <h3><a href="#" target="_blank">Personal Portfolio ↗</a></h3>
-        </div>
-        <p>A responsive, glassmorphism-inspired portfolio designed to showcase my journey, skills and projects.</p>
-        <div class="chips">
-          <span>HTML/CSS</span>
-          <span>JavaScript</span>
-          <span>UI/UX</span>
-        </div>
-      </div>
-    </article>
-
-    <!-- 04. To-Do App -->
-    <article class="project glass">
-      <div class="project-number">04</div>
-      <div>
-        <p class="project-type">LEARNING PROJECT</p>
-        <div class="project-title-row">
-          <h3><a href="#" target="_blank">To-Do App ↗</a></h3>
-        </div>
-        <p>A simple productivity app built while learning front-end development and JavaScript interactions.</p>
-        <div class="chips">
-          <span>JavaScript</span>
-          <span>DOM Manipulation</span>
-        </div>
-      </div>
-    </article>
-
-    <!-- 05. Placement Ready -->
-    <article class="project glass">
-      <div class="project-number">05</div>
-      <div>
-        <p class="project-type">PLACEMENT PREP • WEB APP</p>
-        <div class="project-title-row">
-          <h3><a href="https://placement-ready-alpha.vercel.app/" target="_blank">Placement Ready ↗</a></h3>
-        </div>
-        <p>A comprehensive web platform for CSE students to prepare for tech interviews, campus placements, coding practice, and subject revision.</p>
-        <div class="chips">
-          <span>Placement Prep</span>
-          <span>Web App</span>
-          <span>CSE Resources</span>
-        </div>
-      </div>
-    </article>
-
-  </div> <!-- End of .projects -->
-</section> <!-- End of #projects -->
-
-</div>
-    </section>
-
-    <section class="section journey">
-      <div class="section-label">04 / JOURNEY</div>
-      <div class="timeline">
-        <div class="time-item"><span>2026</span><div><h3>JIIT Noida</h3><p>Started B.Tech in Computer Science & Engineering.</p></div></div>
-        <div class="time-item"><span>NOW</span><div><h3>Build mode</h3><p>Learning C/C++, web development, GitHub and project building.</p></div></div>
-        <div class="time-item"><span>NEXT</span><div><h3>Software Engineer</h3><p>DSA → projects → internships → strong engineering fundamentals.</p></div></div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact glass">
-      <p class="eyebrow">05 / CONTACT</p>
-      <h2>Let's build something<br><span>interesting.</span></h2>
-      <p>I'm always open to learning, collaborating and building cool projects.</p>
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="eyebrow">COMPUTER SCIENCE STUDENT</p>
+      <h1>Building the <span>future</span> of web & tech.</h1>
+      <p class="hero-text">
+        CSE student at JIIT Noida. Passionate about web development, DSA, and building real-world projects that make an impact.
+      </p>
       <div class="actions">
-        <a class="btn primary" href="mailto:dhairyaarora20@gmail.com">Email me ↗</a>
-        <a class="btn secondary" href="https://www.linkedin.com/in/dhairya-arora-5b277a426/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="#projects" class="btn primary">View Projects ↗</a>
+        <button onclick="copyEmail()" class="btn secondary">
+          Copy Email <span id="copy-msg">Copied!</span>
+        </button>
+      </div>
+      <div class="mini-stats">
+        <div><strong>2026</strong><span>Graduation</span></div>
+        <div><strong>5+</strong><span>Projects Built</span></div>
+        <div><strong>JIIT</strong><span>Noida</span></div>
+      </div>
+    </div>
+
+    <!-- CODE WINDOW CARD -->
+    <div class="hero-card glass">
+      <div class="card-top">
+        <span class="status"></span> Active & Building
+      </div>
+      <div class="code-window">
+        <div class="code-bar">
+          <i></i><i></i><i></i>
+          <span>developer.js</span>
         </div>
+        <pre><code></code></pre>
+      </div>
+      <div class="floating-tag tag-one">💻 Web Dev</div>
+      <div class="floating-tag tag-two">🚀 Open Source</div>
+    </div>
+  </section>
 
-    </section>
-  </main>
+  <!-- ABOUT SECTION -->
+  <section id="about" class="section">
+    <div class="about-grid">
+      <div>
+        <p class="section-label">01 / ABOUT ME</p>
+        <h2>Passionate about technology<span>.</span></h2>
+      </div>
+      <p class="about-text">
+        I am a Computer Science undergraduate at Jaypee Institute of Information Technology (JIIT Noida). My focus revolves around software engineering, web application development, and problem-solving through Data Structures & Algorithms.
+      </p>
+    </div>
+  </section>
 
-  <footer><span>© 2026 Dhairya Arora</span><span>Built with curiosity & code.</span></footer>
+  <!-- SKILLS SECTION -->
+  <section id="skills" class="section">
+    <p class="section-label">02 / SKILLS</p>
+    <h2>Technical Arsenal<span>.</span></h2>
+    <div class="skills-grid">
+      <div class="skill glass">
+        <b>C / C++</b>
+        <small>Core Programming & DSA</small>
+        <div class="bar"><i style="width: 85%;"></i></div>
+      </div>
+      <div class="skill glass">
+        <b>Frontend Dev</b>
+        <small>HTML, CSS, JavaScript</small>
+        <div class="bar"><i style="width: 80%;"></i></div>
+      </div>
+      <div class="skill glass">
+        <b>React.js</b>
+        <small>Web App Development</small>
+        <div class="bar"><i style="width: 70%;"></i></div>
+      </div>
+      <div class="skill glass">
+        <b>Git & GitHub</b>
+        <small>Version Control & Workflow</small>
+        <div class="bar"><i style="width: 75%;"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section id="projects" class="section">
+    <div class="project-heading">
+      <div>
+        <p class="section-label">03 / SELECTED WORKS</p>
+        <h2>Featured Projects<span>.</span></h2>
+      </div>
+      <p>A selection of projects ranging from IoT smart solutions to AI tools and web platforms.</p>
+    </div>
+
+    <div class="projects">
+
+      <!-- 01. JalSetu -->
+      <article class="project glass featured">
+        <div class="project-number">01</div>
+        <div>
+          <p class="project-type">HACKATHON • WATER SECURITY</p>
+          <div class="project-title-row">
+            <h3><a href="#" target="_blank">JalSetu ↗</a></h3>
+          </div>
+          <p>A smart water-security concept combining monitoring, tank automation and a mobile interface to reduce water wastage and improve household visibility.</p>
+          <div class="chips">
+            <span>IoT</span>
+            <span>Web/App</span>
+            <span>Smart Monitoring</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 02. AI Study Buddy -->
+      <article class="project glass">
+        <div class="project-number">02</div>
+        <div>
+          <p class="project-type">AI • EDUCATION</p>
+          <div class="project-title-row">
+            <h3><a href="#" target="_blank">AI Study Buddy ↗</a></h3>
+          </div>
+          <p>An AI-powered study companion for CSE students — dashboard, AI tutor, coding practice, flashcards, study planner and progress tracking, built for learning college subjects and programming in one place.</p>
+          <div class="chips">
+            <span>React</span>
+            <span>AI</span>
+            <span>CSE Tools</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 03. Personal Portfolio -->
+      <article class="project glass">
+        <div class="project-number">03</div>
+        <div>
+          <p class="project-type">WEB DEVELOPMENT</p>
+          <div class="project-title-row">
+            <h3><a href="#" target="_blank">Personal Portfolio ↗</a></h3>
+          </div>
+          <p>A responsive, glassmorphism-inspired portfolio designed to showcase my journey, skills and projects.</p>
+          <div class="chips">
+            <span>HTML/CSS</span>
+            <span>JavaScript</span>
+            <span>UI/UX</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 04. To-Do App -->
+      <article class="project glass">
+        <div class="project-number">04</div>
+        <div>
+          <p class="project-type">LEARNING PROJECT</p>
+          <div class="project-title-row">
+            <h3><a href="#" target="_blank">To-Do App ↗</a></h3>
+          </div>
+          <p>A simple productivity app built while learning front-end development and JavaScript interactions.</p>
+          <div class="chips">
+            <span>JavaScript</span>
+            <span>DOM Manipulation</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 05. Placement Ready -->
+      <article class="project glass">
+        <div class="project-number">05</div>
+        <div>
+          <p class="project-type">PLACEMENT PREP • WEB APP</p>
+          <div class="project-title-row">
+            <h3><a href="https://placement-ready-alpha.vercel.app/" target="_blank">Placement Ready ↗</a></h3>
+          </div>
+          <p>A comprehensive web platform for CSE students to prepare for tech interviews, campus placements, coding practice, and subject revision.</p>
+          <div class="chips">
+            <span>Placement Prep</span>
+            <span>Web App</span>
+            <span>CSE Resources</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- JOURNEY SECTION -->
+  <section id="journey" class="section">
+    <p class="section-label">04 / JOURNEY</p>
+    <h2>Career Timeline<span>.</span></h2>
+    <div class="timeline">
+      <div class="time-item">
+        <span>2026</span>
+        <div>
+          <h3>JIIT Noida</h3>
+          <p>Started B.Tech in Computer Science & Engineering.</p>
+        </div>
+      </div>
+      <div class="time-item">
+        <span>NOW</span>
+        <div>
+          <h3>Build mode</h3>
+          <p>Learning C/C++, web development, GitHub and project building.</p>
+        </div>
+      </div>
+      <div class="time-item">
+        <span>NEXT</span>
+        <div>
+          <h3>Software Engineer</h3>
+          <p>DSA → projects → internships → strong engineering fundamentals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="contact glass">
+    <p class="eyebrow">GET IN TOUCH</p>
+    <h2>Let's build something together<span>.</span></h2>
+    <p>Feel free to reach out for collaborations, project opportunities, or just a friendly chat!</p>
+    <div class="actions">
+      <a href="mailto:dhairyaarora20@gmail.com" class="btn primary">Send Email ✉</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>© Dhairya Arora</div>
+    <div>Designed & Built with Precision</div>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
