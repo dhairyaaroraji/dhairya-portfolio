@@ -1,871 +1,1936 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Dhairya Arora | CSE Undergraduate & Software Engineer</title>
     <meta name="description"
-        content="Dhairya Arora — CSE Undergraduate at JIIT Noida building software, web applications and practical technology projects.">
-
+        content="Dhairya Arora — CSE Undergraduate at JIIT Noida focused on software engineering, DSA, web development, AI experimentation, and practical product building.">
     <meta name="author" content="Dhairya Arora">
+    <meta name="theme-color" content="#050505">
 
-    <title>Dhairya Arora | CSE Undergraduate</title>
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Dhairya Arora | CSE Undergraduate & Software Engineer">
+    <meta property="og:description" content="CSE Undergraduate at JIIT Noida building real projects, participating in hackathons, and experimenting with AI.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/dhairyaaroraji">
 
-    <link rel="stylesheet" href="style.css">
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ==========================================================================
+           COLOR SYSTEM & TOKENS
+           ========================================================================== */
+        :root {
+            --bg-body: #050505;
+            --bg-surface-1: #08090c;
+            --bg-surface-2: #0b0c10;
+            --bg-surface-3: #12141c;
+            
+            --border-subtle: rgba(255, 255, 255, 0.07);
+            --border-medium: rgba(255, 255, 255, 0.12);
+            --border-accent: rgba(59, 130, 246, 0.3);
+
+            --text-main: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+
+            --electric-blue: #3b82f6;
+            --violet-accent: #8b5cf6;
+            --cyan-accent: #06b6d4;
+
+            --gradient-accent: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #06b6d4 100%);
+            
+            --font-main: 'Inter', -apple-system, sans-serif;
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-mono: 'Geist Mono', monospace;
+
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+
+            --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ==========================================================================
+           GLOBAL RESET & BASE STYLES
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Focus outline accessibility */
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--cyan-accent);
+            outline-offset: 4px;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-body);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .gradient-text {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--cyan-accent);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--cyan-accent);
+            display: inline-block;
+        }
+
+        .section-heading {
+            font-family: var(--font-heading);
+            font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 32px;
+        }
+
+        /* Ambient Glow & Grid Layering */
+        .ambient-layer {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(circle at 50% 30%, black 20%, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle at 50% 30%, black 20%, transparent 80%);
+        }
+
+        .radial-glow-1 {
+            position: absolute;
+            top: -10%;
+            left: 20%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+            filter: blur(80px);
+        }
+
+        .radial-glow-2 {
+            position: absolute;
+            top: 50%;
+            right: -10%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+            filter: blur(100px);
+        }
+
+        /* Mouse Spotlight Glow */
+        #mouse-spotlight {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Scroll Progress */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: var(--gradient-accent);
+            z-index: 10000;
+            width: 0%;
+        }
+
+        /* Back To Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--bg-surface-2);
+            border: 1px solid var(--border-medium);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #back-to-top:hover {
+            border-color: var(--electric-blue);
+            transform: translateY(-4px);
+        }
+
+        /* ==========================================================================
+           BUTTONS & INTERACTIVE ELEMENTS
+           ========================================================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            border: none;
+            position: relative;
+        }
+
+        .btn-primary {
+            background: #ffffff;
+            color: #000000;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary:hover {
+            background: #e2e8f0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary {
+            background: var(--bg-surface-2);
+            color: var(--text-main);
+            border: 1px solid var(--border-medium);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-surface-3);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           FLOATING NAVIGATION
+           ========================================================================== */
+        .nav-header {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 0 24px;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1100px;
+            padding: 10px 24px;
+            background: rgba(8, 9, 12, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 9999px;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-logo {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-logo span {
+            color: var(--electric-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #ffffff;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-surface-2);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-icon-btn:hover {
+            color: #fff;
+            border-color: var(--border-medium);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        /* Mobile Nav Drawer */
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 340px;
+            height: 100vh;
+            background: var(--bg-surface-1);
+            border-left: 1px solid var(--border-medium);
+            z-index: 1001;
+            padding: 80px 28px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mobile-drawer.active {
+            right: 0;
+        }
+
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-close-btn {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-nav-item {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        /* ==========================================================================
+           HERO SECTION
+           ========================================================================== */
+        .hero {
+            min-height: 100vh;
+            padding-top: 160px;
+            padding-bottom: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: 9999px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: #34d399;
+            margin-bottom: 20px;
+        }
+
+        .status-dot-inner {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #10b981;
+            animation: pulseGlow 2s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 580px;
+            margin-bottom: 36px;
+            line-height: 1.65;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        /* Command Center Visual */
+        .command-center {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .center-core {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: var(--bg-surface-2);
+            border: 1px solid var(--border-medium);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 50px rgba(59, 130, 246, 0.15);
+            z-index: 2;
+            position: relative;
+        }
+
+        .center-core::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 1px dashed rgba(59, 130, 246, 0.3);
+            animation: spinRing 25s linear infinite;
+        }
+
+        @keyframes spinRing {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .core-text {
+            font-family: var(--font-mono);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .core-sub {
+            font-size: 0.7rem;
+            color: var(--cyan-accent);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        /* Orbiting Badges */
+        .orbit-node {
+            position: absolute;
+            padding: 8px 16px;
+            background: var(--bg-surface-1);
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: var(--transition-smooth);
+            animation: floatNode 6s ease-in-out infinite alternate;
+        }
+
+        .orbit-node:hover {
+            border-color: var(--electric-blue);
+            transform: scale(1.05);
+        }
+
+        .node-1 { top: 12%; left: 8%; animation-delay: 0s; }
+        .node-2 { top: 8%; right: 12%; animation-delay: -1.5s; }
+        .node-3 { bottom: 20%; left: 5%; animation-delay: -3s; }
+        .node-4 { bottom: 16%; right: 8%; animation-delay: -4.5s; }
+        .node-5 { top: 48%; left: -2%; animation-delay: -2s; }
+        .node-6 { top: 45%; right: -2%; animation-delay: -3.5s; }
+
+        @keyframes floatNode {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-10px); }
+        }
+
+        /* Hero Stats Banner */
+        .stats-banner {
+            margin-top: 60px;
+            padding: 28px 36px;
+            background: var(--bg-surface-1);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .stat-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* ==========================================================================
+           ABOUT SECTION
+           ========================================================================== */
+        .story-blocks {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+            margin-bottom: 32px;
+        }
+
+        .story-card {
+            background: var(--bg-surface-1);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 32px 24px;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: transparent;
+            transition: var(--transition-smooth);
+        }
+
+        .story-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-medium);
+            background: var(--bg-surface-2);
+        }
+
+        .story-card:hover::before {
+            background: var(--gradient-accent);
+        }
+
+        .story-num {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--cyan-accent);
+            margin-bottom: 16px;
+        }
+
+        .story-title {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .story-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .about-statement {
+            background: var(--bg-surface-2);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 32px;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.75;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* ==========================================================================
+           SKILLS SECTION
+           ========================================================================== */
+        .tech-wall {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .tech-category {
+            background: var(--bg-surface-1);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 28px;
+        }
+
+        .tech-cat-title {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tech-chips-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .tech-chip {
+            padding: 8px 18px;
+            background: var(--bg-surface-2);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-main);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition-smooth);
+        }
+
+        .tech-chip:hover {
+            border-color: var(--electric-blue);
+            background: rgba(59, 130, 246, 0.08);
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+
+        .tech-chip i {
+            color: var(--cyan-accent);
+            font-size: 0.85rem;
+        }
+
+        /* ==========================================================================
+           FEATURED PROJECTS
+           ========================================================================== */
+        .projects-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        /* HERO PROJECT 01: JALSETU */
+        .jalsetu-hero-card {
+            background: linear-gradient(135deg, rgba(11, 12, 16, 0.95) 0%, rgba(8, 9, 12, 0.98) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.35);
+            border-radius: var(--radius-xl);
+            padding: 48px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-proj-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .proj-badge-hero {
+            padding: 4px 12px;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #60a5fa;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            border-radius: var(--radius-sm);
+            text-transform: uppercase;
+        }
+
+        .proj-title-hero {
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 6px;
+        }
+
+        .proj-sub-hero {
+            font-size: 1.1rem;
+            color: var(--cyan-accent);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .proj-desc-hero {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.65;
+            margin-bottom: 24px;
+        }
+
+        .concept-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 16px;
+            background: var(--bg-surface-3);
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: #ffffff;
+            margin-bottom: 24px;
+        }
+
+        .feature-bullets {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 32px;
+        }
+
+        .feature-bullets li {
+            font-size: 0.88rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature-bullets li i {
+            color: var(--electric-blue);
+            font-size: 0.75rem;
+        }
+
+        /* JalSetu Dashboard Visual Concept */
+        .jalsetu-dashboard-mock {
+            background: var(--bg-body);
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            justify-content: center;
+            position: relative;
+        }
+
+        .dash-widget {
+            background: var(--bg-surface-1);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .widget-title {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        .widget-val {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            font-size: 0.88rem;
+        }
+
+        /* PROJECTS 02-04 GRID */
+        .proj-grid-secondary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .editorial-card {
+            background: var(--bg-surface-1);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition-smooth);
+        }
+
+        .editorial-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-medium);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+
+        .card-num {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .card-title {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .card-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-mock-visual {
+            background: var(--bg-surface-2);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 14px;
+            margin-bottom: 24px;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--cyan-accent);
+            line-height: 1.8;
+        }
+
+        /* Other Experiments Strip */
+        .experiments-strip {
+            background: var(--bg-surface-1);
+            border: 1px dashed var(--border-medium);
+            border-radius: var(--radius-md);
+            padding: 24px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* ==========================================================================
+           RECOGNITION / ACHIEVEMENTS SECTION
+           ========================================================================== */
+        .achievement-banner {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(8, 9, 12, 0.95) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .trophy-container {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: var(--violet-accent);
+            flex-shrink: 0;
+        }
+
+        .badge-shortlisted {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #34d399;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            margin-bottom: 10px;
+        }
+
+        /* ==========================================================================
+           PHILOSOPHY SECTION
+           ========================================================================== */
+        .philosophy-container {
+            text-align: center;
+            padding: 80px 24px;
+            position: relative;
+        }
+
+        .philo-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-family: var(--font-heading);
+            font-size: clamp(1.6rem, 3.5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .philo-arrow {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        /* ==========================================================================
+           TIMELINE SECTION
+           ========================================================================== */
+        .timeline-wrapper {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-left: 36px;
+        }
+
+        .timeline-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--electric-blue), var(--violet-accent), var(--border-subtle));
+        }
+
+        .timeline-node {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-node::before {
+            content: '';
+            position: absolute;
+            left: -41px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg-body);
+            border: 2px solid var(--electric-blue);
+        }
+
+        .timeline-tag {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--cyan-accent);
+            margin-bottom: 4px;
+        }
+
+        .timeline-heading {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .timeline-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* ==========================================================================
+           CONTACT & FOOTER
+           ========================================================================== */
+        .contact-cta-box {
+            text-align: center;
+            padding: 80px 32px;
+            background: var(--bg-surface-1);
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer {
+            padding: 36px 0;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        /* Modal Overlay for JalSetu Case Study */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: var(--bg-surface-1);
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-lg);
+            max-width: 650px;
+            width: 100%;
+            padding: 36px;
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.25rem;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: #fff;
+        }
+
+        /* ==========================================================================
+           RESPONSIVE STYLES
+           ========================================================================== */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .jalsetu-hero-card {
+                grid-template-columns: 1fr;
+            }
+
+            .proj-grid-secondary {
+                grid-template-columns: 1fr;
+            }
+
+            .story-blocks {
+                grid-template-columns: 1fr;
+            }
+            
+            .command-center {
+                height: 320px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-actions {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .stats-banner {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .achievement-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .experiments-strip {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .feature-bullets {
+                grid-template-columns: 1fr;
+            }
+
+            .jalsetu-hero-card {
+                padding: 28px;
+            }
+
+            .command-center {
+                height: 280px;
+            }
+
+            .orbit-node {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
+
+            .node-5, .node-6 {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .section-heading {
+                font-size: 2rem;
+            }
+
+            .stats-banner {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- =========================
-         BACKGROUND ORBS
-    ========================== -->
+    <!-- Ambient Glow & Spotlight Layer -->
+    <div id="mouse-spotlight"></div>
+    <div id="scroll-progress"></div>
+    
+    <button id="back-to-top" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
 
-    <div class="orb orb-a"></div>
-    <div class="orb orb-b"></div>
+    <div class="ambient-layer">
+        <div class="bg-grid"></div>
+        <div class="radial-glow-1"></div>
+        <div class="radial-glow-2"></div>
+    </div>
 
-
-    <!-- =========================
-         NAVIGATION
-    ========================== -->
-
-    <nav class="nav glass">
-
-        <a href="#" class="logo">
-            Dhairya Arora<span>.</span>
-        </a>
-
-        <div class="navlinks">
-
-            <a href="#about">About</a>
-
-            <a href="#skills">Skills</a>
-
-            <a href="#projects">Projects</a>
-
-            <a href="#journey">Journey</a>
-
-            <a href="https://github.com/dhairyaaroraji"
-               target="_blank"
-               rel="noopener noreferrer">
-                GitHub ↗
+    <!-- Mobile Drawer & Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close Mobile Menu"><i class="fa-solid fa-xmark"></i></button>
+        <a href="#home" class="mobile-nav-item">Home</a>
+        <a href="#about" class="mobile-nav-item">About</a>
+        <a href="#skills" class="mobile-nav-item">Skills</a>
+        <a href="#projects" class="mobile-nav-item">Projects</a>
+        <a href="#achievements" class="mobile-nav-item">Achievements</a>
+        <a href="#journey" class="mobile-nav-item">Journey</a>
+        <a href="#contact" class="mobile-nav-item">Contact</a>
+        <div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px;">
+            <a href="https://github.com/dhairyaaroraji" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                <i class="fa-brands fa-github"></i> GitHub ↗
             </a>
-
-            <a href="https://www.linkedin.com/in/dhairya-arora-5b277a426"
-               target="_blank"
-               rel="noopener noreferrer">
-                LinkedIn ↗
+            <a href="https://www.linkedin.com/in/dhairya-arora-5b227a426" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                <i class="fa-brands fa-linkedin"></i> LinkedIn ↗
             </a>
-
-            <a href="#contact" class="nav-cta">
-                Let's Talk
-            </a>
-
         </div>
+    </div>
 
-    </nav>
+    <!-- Floating Navigation -->
+    <header class="nav-header">
+        <nav class="nav-container">
+            <a href="#home" class="nav-logo">Dhairya Arora<span>.</span></a>
 
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#journey">Journey</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
 
-    <!-- =========================
-         HERO
-    ========================== -->
-
-    <section class="hero">
-
-        <div class="hero-content">
-
-            <p class="eyebrow">
-                COMPUTER SCIENCE UNDERGRADUATE
-            </p>
-
-            <h1>
-                Building software that
-                <span>solves real problems</span>.
-            </h1>
-
-            <p class="hero-text">
-                CSE undergraduate at JIIT Noida, focused on software
-                development, DSA, and building practical products.
-            </p>
-
-
-            <div class="actions">
-
-                <a href="#projects" class="btn primary">
-                    View Projects ↗
+            <div class="nav-actions">
+                <a href="https://github.com/dhairyaaroraji" target="_blank" rel="noopener noreferrer" class="nav-icon-btn" aria-label="GitHub Profile">
+                    <i class="fa-brands fa-github"></i>
                 </a>
-
-                <a href="https://github.com/dhairyaaroraji"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="btn secondary">
-                    GitHub ↗
+                <a href="https://www.linkedin.com/in/dhairya-arora-5b227a426" target="_blank" rel="noopener noreferrer" class="nav-icon-btn" aria-label="LinkedIn Profile">
+                    <i class="fa-brands fa-linkedin"></i>
                 </a>
-
-                <a href="https://www.linkedin.com/in/dhairya-arora-5b277a426"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="btn secondary">
-                    LinkedIn ↗
+                <a href="#contact" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">
+                    Let's Talk
                 </a>
-
             </div>
 
+            <button class="hamburger" id="hamburgerBtn" aria-label="Open Navigation Menu">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </nav>
+    </header>
 
-            <!-- HERO STATS -->
-
-            <div class="mini-stats">
-
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-grid">
                 <div>
-                    <strong>2030</strong>
-                    <span>Expected Graduation</span>
+                    <div class="status-pill">
+                        <span class="status-dot-inner"></span> Currently Building
+                    </div>
+                    <p class="section-label">CSE UNDERGRADUATE • JIIT NOIDA</p>
+                    <h1 class="hero-title">
+                        Building software, AI products &amp; solutions for <span class="gradient-text">real-world problems</span>.
+                    </h1>
+                    <p class="hero-description">
+                        CSE undergraduate at JIIT Noida focused on software engineering, DSA, web development, AI experimentation, and practical product building.
+                    </p>
+                    <div class="hero-cta-group">
+                        <a href="#projects" class="btn btn-primary">
+                            View Projects <i class="fa-solid fa-arrow-down"></i>
+                        </a>
+                        <a href="https://github.com/dhairyaaroraji" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                            <i class="fa-brands fa-github"></i> GitHub ↗
+                        </a>
+                        <a href="https://www.linkedin.com/in/dhairya-arora-5b227a426" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                            <i class="fa-brands fa-linkedin"></i> LinkedIn ↗
+                        </a>
+                    </div>
                 </div>
 
-                <div>
-                    <strong>5+</strong>
-                    <span>Projects Built</span>
-                </div>
+                <!-- Floating 3D Command Center Visual -->
+                <div class="command-center">
+                    <div class="center-core">
+                        <span class="core-text">dhairya.dev</span>
+                        <span class="core-sub">SYSTEM ACTIVE</span>
+                    </div>
 
-                <div>
-                    <strong>JIIT</strong>
-                    <span>Noida</span>
+                    <div class="orbit-node node-1">
+                        <i class="fa-solid fa-code" style="color: #3b82f6;"></i> C++
+                    </div>
+                    <div class="orbit-node node-2">
+                        <i class="fa-brands fa-react" style="color: #06b6d4;"></i> React
+                    </div>
+                    <div class="orbit-node node-3">
+                        <i class="fa-solid fa-brain" style="color: #8b5cf6;"></i> AI
+                    </div>
+                    <div class="orbit-node node-4">
+                        <i class="fa-solid fa-sitemap" style="color: #34d399;"></i> DSA
+                    </div>
+                    <div class="orbit-node node-5">
+                        <i class="fa-brands fa-git-alt" style="color: #f97316;"></i> Git
+                    </div>
+                    <div class="orbit-node node-6">
+                        <i class="fa-solid fa-globe" style="color: #3b82f6;"></i> Web
+                    </div>
                 </div>
-
             </div>
 
+            <!-- MANDATORY STATS BANNER -->
+            <div class="stats-banner">
+                <div class="stat-card">
+                    <span class="stat-number gradient-text">5+</span>
+                    <span class="stat-label">Projects Built</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number gradient-text">1</span>
+                    <span class="stat-label">Hackathon Shortlist</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" style="color: #fff;">2030</span>
+                    <span class="stat-label">Expected Graduation</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" style="color: #fff;">JIIT</span>
+                    <span class="stat-label">Noida</span>
+                </div>
+            </div>
         </div>
-
-
-        <!-- =========================
-             CODE WINDOW
-        ========================== -->
-
-        <div class="hero-card glass">
-
-            <div class="card-top">
-
-                <span class="status"></span>
-
-                Active &amp; Building
-
-            </div>
-
-
-            <div class="code-window">
-
-                <div class="code-bar">
-
-                    <i></i>
-                    <i></i>
-                    <i></i>
-
-                    <span>developer.js</span>
-
-                </div>
-
-
-                <pre><code><span class="kw">const</span> dhairya = {
-  <span class="kw">role</span>: <span class="str">"CSE Undergraduate"</span>,
-  <span class="kw">college</span>: <span class="str">"JIIT Noida"</span>,
-  <span class="kw">focus</span>: [
-    <span class="str">"Software Engineering"</span>,
-    <span class="str">"DSA"</span>,
-    <span class="str">"Web Development"</span>
-  ],
-  <span class="kw">status</span>: <span class="str">"Learning • Building • Shipping 🚀"</span>
-};</code></pre>
-
-            </div>
-
-
-            <div class="floating-tag tag-one">
-                💻 Web Dev
-            </div>
-
-            <div class="floating-tag tag-two">
-                🚀 Open Source
-            </div>
-
-        </div>
-
     </section>
 
-
-    <!-- =========================
-         ABOUT
-    ========================== -->
-
+    <!-- ABOUT SECTION -->
     <section id="about" class="section">
+        <div class="container">
+            <span class="section-label">01 / PHILOSOPHY &amp; APPROACH</span>
+            <h2 class="section-heading">I build, learn &amp; experiment with technology.</h2>
 
-        <div class="about-grid">
-
-            <div>
-
-                <p class="section-label">
-                    01 / ABOUT ME
-                </p>
-
-                <h2>
-                    I build, learn &amp; experiment with technology<span>.</span>
-                </h2>
-
+            <div class="story-blocks">
+                <div class="story-card">
+                    <div class="story-num">01</div>
+                    <h3 class="story-title">BUILD</h3>
+                    <p class="story-desc">Practical software projects, AI-assisted tools, and web applications designed to solve real user challenges.</p>
+                </div>
+                <div class="story-card">
+                    <div class="story-num">02</div>
+                    <h3 class="story-title">EXPLORE</h3>
+                    <p class="story-desc">Emerging technology, AI integration, full-stack systems, and scalable modern web tools.</p>
+                </div>
+                <div class="story-card">
+                    <div class="story-num">03</div>
+                    <h3 class="story-title">GROW</h3>
+                    <p class="story-desc">Data Structures &amp; Algorithms, core programming fundamentals, and software engineering practices.</p>
+                </div>
             </div>
 
-
-            <p class="about-text">
-
-                I'm a Computer Science undergraduate at Jaypee Institute
-                of Information Technology (JIIT), Noida. I'm currently
-                building my foundations in programming, Data Structures
-                &amp; Algorithms, and web development.
-
-                I enjoy turning ideas into practical projects and
-                continuously improving through hands-on learning.
-
-            </p>
-
+            <div class="about-statement">
+                I am a Computer Science undergraduate at Jaypee Institute of Information Technology (JIIT), Noida. I am building strong foundations in programming, Data Structures &amp; Algorithms, web development, and software engineering. I enjoy turning ideas into practical projects and improving through hands-on development.
+            </div>
         </div>
-
     </section>
 
-
-    <!-- =========================
-         CURRENTLY BUILDING
-    ========================== -->
-
-    <section class="section">
-
-        <p class="section-label">
-            CURRENT FOCUS
-        </p>
-
-        <h2>
-            Currently Building<span>.</span>
-        </h2>
-
-
-        <div class="skills-grid">
-
-
-            <div class="skill glass">
-
-                <b>
-                    01 — DSA Foundations
-                </b>
-
-                <p style="color: #858c9e; font-size: 13px; margin-top: 8px;">
-                    Improving problem-solving and algorithmic thinking
-                    through consistent practice.
-                </p>
-
-            </div>
-
-
-            <div class="skill glass">
-
-                <b>
-                    02 — Full-Stack Development
-                </b>
-
-                <p style="color: #858c9e; font-size: 13px; margin-top: 8px;">
-                    Learning how frontend, backend, databases,
-                    and APIs work together.
-                </p>
-
-            </div>
-
-
-            <div class="skill glass">
-
-                <b>
-                    03 — Study Buddy CSE
-                </b>
-
-                <p style="color: #858c9e; font-size: 13px; margin-top: 8px;">
-                    Building a useful learning platform
-                    for CSE students.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         SKILLS
-    ========================== -->
-
+    <!-- SKILLS SECTION -->
     <section id="skills" class="section">
+        <div class="container">
+            <span class="section-label">02 / TECHNICAL ARSENAL</span>
+            <h2 class="section-heading">Technologies &amp; Tools</h2>
 
-        <p class="section-label">
-            02 / SKILLS
-        </p>
+            <div class="tech-wall">
+                <!-- LANGUAGES -->
+                <div class="tech-category">
+                    <div class="tech-cat-title"><i class="fa-solid fa-code"></i> Languages</div>
+                    <div class="tech-chips-grid">
+                        <span class="tech-chip"><i class="fa-solid fa-terminal"></i> C</span>
+                        <span class="tech-chip"><i class="fa-solid fa-code"></i> C++</span>
+                        <span class="tech-chip"><i class="fa-brands fa-js"></i> JavaScript</span>
+                    </div>
+                </div>
 
-        <h2>
-            Technical Arsenal<span>.</span>
-        </h2>
+                <!-- WEB DEVELOPMENT -->
+                <div class="tech-category">
+                    <div class="tech-cat-title"><i class="fa-solid fa-laptop-code"></i> Web Development</div>
+                    <div class="tech-chips-grid">
+                        <span class="tech-chip"><i class="fa-brands fa-html5"></i> HTML</span>
+                        <span class="tech-chip"><i class="fa-brands fa-css3-alt"></i> CSS</span>
+                        <span class="tech-chip"><i class="fa-brands fa-react"></i> React</span>
+                    </div>
+                </div>
 
+                <!-- CORE CS -->
+                <div class="tech-category">
+                    <div class="tech-cat-title"><i class="fa-solid fa-microchip"></i> Core CS</div>
+                    <div class="tech-chips-grid">
+                        <span class="tech-chip"><i class="fa-solid fa-sitemap"></i> Data Structures</span>
+                        <span class="tech-chip"><i class="fa-solid fa-diagram-project"></i> Algorithms</span>
+                        <span class="tech-chip"><i class="fa-solid fa-gear"></i> Programming Fundamentals</span>
+                    </div>
+                </div>
 
-        <div class="skills-grid">
+                <!-- TOOLS -->
+                <div class="tech-category">
+                    <div class="tech-cat-title"><i class="fa-solid fa-wrench"></i> Tools</div>
+                    <div class="tech-chips-grid">
+                        <span class="tech-chip"><i class="fa-brands fa-git-alt"></i> Git</span>
+                        <span class="tech-chip"><i class="fa-brands fa-github"></i> GitHub</span>
+                        <span class="tech-chip"><i class="fa-solid fa-code-merge"></i> VS Code</span>
+                    </div>
+                </div>
 
-
-            <div class="skill glass">
-
-                <b>
-                    Core
-                </b>
-
-                <small>
-                    C, C++, Data Structures, Git &amp; GitHub
-                </small>
-
+                <!-- CURRENTLY LEARNING -->
+                <div class="tech-category">
+                    <div class="tech-cat-title"><i class="fa-solid fa-graduation-cap"></i> Currently Learning</div>
+                    <div class="tech-chips-grid">
+                        <span class="tech-chip"><i class="fa-brands fa-node-js"></i> Node.js</span>
+                        <span class="tech-chip"><i class="fa-solid fa-server"></i> Express.js</span>
+                        <span class="tech-chip"><i class="fa-solid fa-database"></i> SQL</span>
+                        <span class="tech-chip"><i class="fa-solid fa-network-wired"></i> Backend Development</span>
+                    </div>
+                </div>
             </div>
-
-
-            <div class="skill glass">
-
-                <b>
-                    Web
-                </b>
-
-                <small>
-                    HTML, CSS, JavaScript, React
-                </small>
-
-            </div>
-
-
-            <div class="skill glass">
-
-                <b>
-                    Currently Learning
-                </b>
-
-                <small>
-                    Node.js, Express, SQL, Backend Development
-                </small>
-
-            </div>
-
         </div>
-
     </section>
 
-
-    <!-- =========================
-         PROJECTS
-    ========================== -->
-
+    <!-- FEATURED PROJECTS SHOWCASE -->
     <section id="projects" class="section">
+        <div class="container">
+            <span class="section-label">03 / FEATURED WORKS</span>
+            <h2 class="section-heading">Selected Projects</h2>
 
-        <div class="project-heading">
+            <div class="projects-wrapper">
+                <!-- HERO PROJECT 01: JALSETU -->
+                <div class="jalsetu-hero-card">
+                    <div>
+                        <div class="hero-proj-header">
+                            <span class="proj-badge-hero">01 // HERO PROJECT</span>
+                            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--cyan-accent);">AI • IoT • Water Security</span>
+                        </div>
+                        <h3 class="proj-title-hero">JalSetu</h3>
+                        <p class="proj-sub-hero">AI-Powered Water Security Platform</p>
+                        <p class="proj-desc-hero">
+                            JalSetu is a smart water-security platform designed to monitor water conditions, identify water-management risks, and help communities and authorities take action before a crisis develops.
+                        </p>
+                        
+                        <div class="concept-pill">
+                            <i class="fa-solid fa-rotate"></i> Core Concept: Sense → Store → Predict → Act
+                        </div>
 
-            <div>
+                        <ul class="feature-bullets">
+                            <li><i class="fa-solid fa-check"></i> Smart water monitoring</li>
+                            <li><i class="fa-solid fa-check"></i> Real-time monitoring</li>
+                            <li><i class="fa-solid fa-check"></i> Automated control</li>
+                            <li><i class="fa-solid fa-check"></i> Remote water-system management</li>
+                            <li><i class="fa-solid fa-check"></i> Water conservation</li>
+                            <li><i class="fa-solid fa-check"></i> Predictive risk analysis concept</li>
+                        </ul>
 
-                <p class="section-label">
-                    03 / SELECTED WORKS
-                </p>
+                        <div>
+                            <button id="openCaseStudyBtn" class="btn btn-primary">
+                                View Case Study <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
 
-                <h2>
-                    Featured Projects<span>.</span>
-                </h2>
+                    <!-- Water Security Dashboard Concept -->
+                    <div class="jalsetu-dashboard-mock">
+                        <div style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px;">
+                            <i class="fa-solid fa-chart-pie"></i> JALSETU — DASHBOARD CONCEPT
+                        </div>
+                        <div class="dash-widget">
+                            <span class="widget-title">Groundwater Risk</span>
+                            <span class="widget-val" style="color: #34d399;">Risk Status — Demo</span>
+                        </div>
+                        <div class="dash-widget">
+                            <span class="widget-title">Water Level Status</span>
+                            <span class="widget-val" style="color: #3b82f6;">Water Level — Sample Data</span>
+                        </div>
+                        <div class="dash-widget">
+                            <span class="widget-title">TDS / Quality Index</span>
+                            <span class="widget-val" style="color: #06b6d4;">Water Quality — Sample Data</span>
+                        </div>
+                        <div class="dash-widget">
+                            <span class="widget-title">Tank Status &amp; Alert</span>
+                            <span class="widget-val" style="color: #10b981;">Tank Control — Concept</span>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- PROJECTS 02 - 04 GRID -->
+                <div class="proj-grid-secondary">
+                    <!-- PROJECT 02: INTERVIEW AI -->
+                    <div class="editorial-card">
+                        <div>
+                            <span class="card-num">02 // AI PLATFORM</span>
+                            <h3 class="card-title">InterviewAI</h3>
+                            <p class="card-desc">
+                                AI-powered mock interview platform designed for interview practice, personalized questioning, feedback, and performance improvement.
+                            </p>
+                            <div class="card-mock-visual">
+                                <div>> Interview Session</div>
+                                <div>> AI Question Generated</div>
+                                <div>> Candidate Response Analyzed</div>
+                                <div>> AI Feedback &amp; Metrics</div>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="btn btn-secondary" style="width:100%; opacity:0.7; cursor:default; font-size:0.85rem;">
+                                Prototype Concept
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- PROJECT 03: STUDY BUDDY CSE -->
+                    <div class="editorial-card">
+                        <div>
+                            <span class="card-num">03 // AI EDUCATION</span>
+                            <h3 class="card-title">Study Buddy CSE</h3>
+                            <p class="card-desc">
+                                AI learning platform for CSE students featuring AI explanations, quizzes, flashcards, and personalized study plans.
+                            </p>
+                            <div class="card-mock-visual">
+                                <div>> AI Topic Explanations</div>
+                                <div>> Adaptive Quizzes</div>
+                                <div>> Interactive Flashcards</div>
+                                <div>> Customized Study Plans</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <a href="https://study-buddy-cse.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex:1; font-size:0.85rem;">
+                                Live Demo ↗
+                            </a>
+                            <a href="https://github.com/dhairyaaroraji/Study-Buddy-CSE" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size:0.85rem;" aria-label="Study Buddy CSE GitHub Repository">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- PROJECT 04: PLACEMENT READY -->
+                    <div class="editorial-card">
+                        <div>
+                            <span class="card-num">04 // CAREER TECH</span>
+                            <h3 class="card-title">Placement Ready</h3>
+                            <p class="card-desc">
+                                A student-focused career platform offering ATS-friendly resume redesigns, LinkedIn profile improvements, and career resources for college students and freshers.
+                            </p>
+                            <div class="card-mock-visual">
+                                <div>> ATS Resume Redesign</div>
+                                <div>> LinkedIn Optimization</div>
+                                <div>> Career Resources Hub</div>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="https://placement-ready-alpha.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width:100%; font-size:0.85rem;">
+                                Live Demo ↗
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OTHER EXPERIMENTS -->
+                <div class="experiments-strip">
+                    <div>
+                        <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--cyan-accent);">OTHER EXPERIMENTS</span>
+                        <h4 style="font-size: 1.1rem; font-weight: 700; color: #fff;">Personal Portfolio &amp; To-Do App</h4>
+                        <p style="font-size: 0.88rem; color: var(--text-secondary);">Smaller DOM manipulation applications and web prototypes developed during hands-on learning.</p>
+                    </div>
+                    <a href="https://github.com/dhairyaaroraji" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size:0.85rem;">
+                        View All on GitHub ↗
+                    </a>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <p>
-                A selection of projects ranging from smart water
-                management concepts to AI-powered learning platforms
-                and practical web applications.
+    <!-- CASE STUDY MODAL FOR JALSETU -->
+    <div class="modal-overlay" id="caseStudyModal">
+        <div class="modal-card">
+            <button class="modal-close" id="closeCaseStudyBtn" aria-label="Close Case Study"><i class="fa-solid fa-xmark"></i></button>
+            <span class="proj-badge-hero" style="margin-bottom: 12px; display: inline-block;">CASE STUDY CONCEPT</span>
+            <h3 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 700; margin-bottom: 8px;">JalSetu Architecture</h3>
+            <p style="color: var(--cyan-accent); font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: 16px;">AI-Powered Water Security Platform</p>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 16px;">
+                JalSetu was conceived for the Code4Nature Challenge 2026. The platform proposal combines IoT sensor simulation with predictive AI analysis to sense localized groundwater changes and trigger preventive community actions.
             </p>
-
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 24px;">
+                <strong>Key Focus Areas:</strong> Telemetry collection pipelines, automated risk thresholds, risk visualization dashboards, and early warning notifications.
+            </p>
+            <button class="btn btn-secondary" id="closeCaseStudyBtn2" style="width: 100%;">Close Overview</button>
         </div>
+    </div>
 
+    <!-- RECOGNITION / ACHIEVEMENTS SECTION -->
+    <section id="achievements" class="section">
+        <div class="container">
+            <span class="section-label">04 / RECOGNITION</span>
+            <h2 class="section-heading">Achievements &amp; Hackathons</h2>
 
-        <div class="projects">
-
-
-            <!-- =========================
-                 01 — JALSETU
-            ========================== -->
-
-            <article class="project glass featured">
-
-                <div class="project-number">
-                    01
+            <div class="achievement-banner">
+                <div class="trophy-container">
+                    <i class="fa-solid fa-trophy"></i>
                 </div>
-
-
                 <div>
-
-                    <p class="project-type">
-                        SMART WATER MANAGEMENT SYSTEM
-                    </p>
-
-
-                    <h3>
-                        JalSetu
+                    <span class="badge-shortlisted">SHORTLISTED</span>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700; margin-bottom: 8px;">
+                        Code4Nature Challenge 2026
                     </h3>
-
-
-                    <p>
-                        A smart water-management solution designed
-                        to reduce water wastage through real-time
-                        monitoring, automated control, and remote
-                        water-system management.
+                    <p style="color: var(--text-main); font-size: 1rem; margin-bottom: 8px;">
+                        Team: <strong style="color: #ffffff;">NOVASTACKS</strong> &nbsp;|&nbsp; Project: <strong style="color: #ffffff;">JalSetu</strong> &nbsp;|&nbsp; Theme: <strong style="color: #ffffff;">Water Security</strong>
                     </p>
-
-
-                    <div class="chips">
-
-                        <span>IoT</span>
-                        <span>Water Security</span>
-                        <span>Automation</span>
-                        <span>Hackathon</span>
-
-                    </div>
-
-
-                    <div class="actions" style="margin-top: 15px;">
-
-                        <a href="#contact"
-                           class="btn secondary"
-                           style="padding: 8px 14px; font-size: 11px;">
-                            View Project →
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <!-- =========================
-                 02 — STUDY BUDDY
-            ========================== -->
-
-            <article class="project glass">
-
-                <div class="project-number">
-                    02
-                </div>
-
-
-                <div>
-
-                    <p class="project-type">
-                        AI-POWERED STUDY COMPANION
+                    <p style="color: var(--text-secondary); font-size: 0.92rem;">
+                        Shortlisted for developing an innovative AI and IoT-driven water security management concept aimed at addressing critical ecological water challenges.
                     </p>
-
-
-                    <h3>
-
-                        <a href="https://study-buddy-cse.vercel.app/"
-                           target="_blank"
-                           rel="noopener noreferrer">
-                            Study Buddy CSE ↗
-                        </a>
-
-                    </h3>
-
-
-                    <p>
-                        A learning platform designed to help CSE
-                        students understand technical topics through
-                        AI explanations, quizzes, flashcards,
-                        and personalized study plans.
-                    </p>
-
-
-                    <div class="chips">
-
-                        <span>AI</span>
-                        <span>React</span>
-                        <span>Education</span>
-
-                    </div>
-
-
-                    <div class="actions" style="margin-top: 15px;">
-
-                        <a href="https://study-buddy-cse.vercel.app/"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="btn secondary"
-                           style="padding: 8px 14px; font-size: 11px;">
-                            Live Demo →
-                        </a>
-
-
-                        <a href="https://github.com/dhairyaaroraji/Study-Buddy-CSE"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="btn secondary"
-                           style="padding: 8px 14px; font-size: 11px;">
-                            GitHub →
-                        </a>
-
-                    </div>
-
                 </div>
-
-            </article>
-
-
-            <!-- =========================
-                 03 — PLACEMENT READY
-            ========================== -->
-
-            <article class="project glass">
-
-                <div class="project-number">
-                    03
-                </div>
-
-
-                <div>
-
-                    <p class="project-type">
-                        STUDENT CAREER PLATFORM • WEB APP
-                    </p>
-
-
-                    <h3>
-
-                        <a href="https://placement-ready-alpha.vercel.app/"
-                           target="_blank"
-                           rel="noopener noreferrer">
-                            Placement Ready ↗
-                        </a>
-
-                    </h3>
-
-
-                    <p>
-                        A student-focused career platform offering
-                        ATS-friendly resume redesigns, LinkedIn profile
-                        improvements, and career resources for college
-                        students and freshers.
-                    </p>
-
-
-                    <div class="chips">
-
-                        <span>Web App</span>
-                        <span>Career Tech</span>
-                        <span>ATS</span>
-                        <span>Student Platform</span>
-
-                    </div>
-
-
-                    <div class="actions" style="margin-top: 15px;">
-
-                        <a href="https://placement-ready-alpha.vercel.app/"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="btn secondary"
-                           style="padding: 8px 14px; font-size: 11px;">
-                            Live Demo →
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <!-- =========================
-                 04 — PORTFOLIO
-            ========================== -->
-
-            <article class="project glass">
-
-                <div class="project-number">
-                    04
-                </div>
-
-
-                <div>
-
-                    <p class="project-type">
-                        PERSONAL DEVELOPER PORTFOLIO
-                    </p>
-
-
-                    <h3>
-                        Personal Portfolio
-                    </h3>
-
-
-                    <p>
-                        A responsive portfolio designed to showcase
-                        my projects, technical journey, skills,
-                        and growth as a software developer.
-                    </p>
-
-
-                    <div class="chips">
-
-                        <span>HTML/CSS</span>
-                        <span>JavaScript</span>
-                        <span>UI/UX</span>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <!-- =========================
-                 05 — TODO APP
-            ========================== -->
-
-            <article class="project glass">
-
-                <div class="project-number">
-                    05
-                </div>
-
-
-                <div>
-
-                    <p class="project-type">
-                        LEARNING PROJECT
-                    </p>
-
-
-                    <h3>
-                        To-Do App
-                    </h3>
-
-
-                    <p>
-                        A simple productivity application built while
-                        learning front-end development, JavaScript,
-                        DOM manipulation, and user interaction.
-                    </p>
-
-
-                    <div class="chips">
-
-                        <span>JavaScript</span>
-                        <span>DOM Manipulation</span>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
+            </div>
         </div>
-
     </section>
 
+    <!-- DEVELOPER PHILOSOPHY STRIP -->
+    <section class="section" style="padding: 40px 0;">
+        <div class="container">
+            <div class="philosophy-container">
+                <div class="philo-steps">
+                    <span>Learn</span>
+                    <span class="philo-arrow">→</span>
+                    <span>Build</span>
+                    <span class="philo-arrow">→</span>
+                    <span>Break</span>
+                    <span class="philo-arrow">→</span>
+                    <span>Improve</span>
+                    <span class="philo-arrow">→</span>
+                    <span class="gradient-text">Ship</span>
+                </div>
+                <p style="color: var(--text-secondary); max-width: 650px; margin: 0 auto; font-size: 1rem;">
+                    A developer mindset focused on practical execution, relentless experimentation, and learning through real-world building.
+                </p>
+            </div>
+        </div>
+    </section>
 
-    <!-- =========================
-         JOURNEY
-    ========================== -->
-
+    <!-- JOURNEY / TIMELINE SECTION -->
     <section id="journey" class="section">
+        <div class="container">
+            <span class="section-label">05 / CAREER ROADMAP</span>
+            <h2 class="section-heading">My Journey</h2>
 
-        <p class="section-label">
-            04 / JOURNEY
-        </p>
-
-        <h2>
-            Career Timeline<span>.</span>
-        </h2>
-
-
-        <div class="timeline">
-
-
-            <div class="time-item">
-
-                <span>
-                    2026
-                </span>
-
-                <div>
-
-                    <h3>
-                        Started B.Tech CSE
-                    </h3>
-
-                    <p>
-                        JIIT Noida — Building core foundations.
-                    </p>
-
+            <div class="timeline-wrapper">
+                <!-- 2026 -->
+                <div class="timeline-node">
+                    <div class="timeline-tag">2026</div>
+                    <h3 class="timeline-heading">Started B.Tech CSE</h3>
+                    <p class="timeline-text">JIIT Noida — Building core foundations in computer science and software development.</p>
                 </div>
 
-            </div>
-
-
-            <div class="time-item">
-
-                <span>
-                    NOW
-                </span>
-
-                <div>
-
-                    <h3>
-                        Building the Foundation
-                    </h3>
-
-                    <p>
-                        C/C++ • DSA • Web Development • Git &amp; GitHub
-                    </p>
-
+                <!-- NOW -->
+                <div class="timeline-node">
+                    <div class="timeline-tag" style="color: var(--violet-accent);">NOW</div>
+                    <h3 class="timeline-heading">Building Foundation</h3>
+                    <p class="timeline-text">Mastering C/C++, Data Structures &amp; Algorithms, Web Development, and Git &amp; GitHub workflow.</p>
                 </div>
 
-            </div>
-
-
-            <div class="time-item">
-
-                <span>
-                    NEXT
-                </span>
-
-                <div>
-
-                    <h3>
-                        Building Production-Ready Skills
-                    </h3>
-
-                    <p>
-                        Full Stack • Advanced DSA • Open Source • Internships
-                    </p>
-
+                <!-- NEXT -->
+                <div class="timeline-node">
+                    <div class="timeline-tag">NEXT</div>
+                    <h3 class="timeline-heading">Production-Ready Skills</h3>
+                    <p class="timeline-text">Expanding into Full Stack Development, Advanced DSA, Open Source contribution, and Internships.</p>
                 </div>
 
-            </div>
-
-
-            <div class="time-item">
-
-                <span>
-                    GOAL
-                </span>
-
-                <div>
-
-                    <h3>
-                        Software Engineer
-                    </h3>
-
-                    <p>
-                        Build useful products and solve meaningful problems.
-                    </p>
-
+                <!-- GOAL -->
+                <div class="timeline-node">
+                    <div class="timeline-tag" style="color: #34d399;">GOAL</div>
+                    <h3 class="timeline-heading">Software Engineer</h3>
+                    <p class="timeline-text">Building useful products, solving meaningful software problems, and shipping production applications.</p>
                 </div>
-
             </div>
-
-
         </div>
-
     </section>
 
-
-    <!-- =========================
-         CONTACT
-    ========================== -->
-
-    <section id="contact" class="contact glass">
-
-        <p class="eyebrow">
-            HAVE AN IDEA? LET'S BUILD IT.
-        </p>
-
-
-        <h2>
-            Let's build something together<span>.</span>
-        </h2>
-
-
-        <p>
-            I'm open to hackathons, collaborations, student projects,
-            and internship opportunities where I can learn, contribute,
-            and build meaningful products.
-        </p>
-
-
-        <div class="actions">
-
-
-            <a href="mailto:dhairyaarora20@gmail.com"
-               class="btn primary">
-                Email Me →
-            </a>
-
-
-            <a href="https://github.com/dhairyaaroraji"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn secondary">
-                GitHub ↗
-            </a>
-
-
-            <a href="https://www.linkedin.com/in/dhairya-arora-5b277a426"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn secondary">
-                LinkedIn ↗
-            </a>
-
-
+    <!-- CONTACT CTA SECTION -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="contact-cta-box">
+                <span class="section-label">HAVE AN IDEA? LET'S BUILD IT.</span>
+                <h2 class="section-heading" style="font-size: clamp(2.2rem, 4.5vw, 3.6rem); margin-bottom: 16px;">
+                    Let's build something meaningful.
+                </h2>
+                <p style="max-width: 620px; margin: 0 auto 36px; color: var(--text-secondary); font-size: 1.05rem; line-height: 1.65;">
+                    I'm open to hackathons, collaborations, student projects, and internship opportunities where I can learn, contribute, and build meaningful products.
+                </p>
+                <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+                    <a href="mailto:dhairyaarora20@gmail.com" class="btn btn-primary">
+                        <i class="fa-solid fa-envelope"></i> Email Me
+                    </a>
+                    <a href="https://github.com/dhairyaaroraji" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                        <i class="fa-brands fa-github"></i> GitHub ↗
+                    </a>
+                    <a href="https://www.linkedin.com/in/dhairya-arora-5b227a426" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                        <i class="fa-brands fa-linkedin"></i> LinkedIn ↗
+                    </a>
+                </div>
+            </div>
         </div>
-
     </section>
 
+    <!-- FOOTER -->
+    <div class="container">
+        <footer>
+            <div>
+                <strong style="color: #fff;">Dhairya Arora</strong> &nbsp;•&nbsp; CSE Undergraduate @ JIIT Noida
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/dhairyaaroraji" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/dhairya-arora-5b227a426" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="mailto:dhairyaarora20@gmail.com">Email</a>
+            </div>
+            <div>
+                &copy; 2026 Dhairya Arora
+            </div>
+        </footer>
+    </div>
 
-    <!-- =========================
-         FOOTER
-    ========================== -->
+    <!-- SCRIPT & MOTION LOGIC -->
+    <script>
+        // 1. Mouse Spotlight Glow
+        const spotlight = document.getElementById('mouse-spotlight');
+        if (spotlight) {
+            window.addEventListener('mousemove', (e) => {
+                spotlight.style.left = e.clientX + 'px';
+                spotlight.style.top = e.clientY + 'px';
+            });
+        }
 
-    <footer>
+        // 2. Scroll Progress Bar & Back to Top Visibility
+        const scrollProgress = document.getElementById('scroll-progress');
+        const backToTop = document.getElementById('back-to-top');
 
-        <div>
-            © 2026 Dhairya Arora
-        </div>
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            if (scrollProgress) scrollProgress.style.width = scrolled + '%';
 
+            if (backToTop) {
+                if (winScroll > 400) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            }
+        });
 
-        <div>
+        if (backToTop) {
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
 
-            <a href="https://github.com/dhairyaaroraji"
-               target="_blank"
-               rel="noopener noreferrer">
-                GitHub
-            </a>
+        // 3. Mobile Nav Drawer Toggle
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        const mobileItems = document.querySelectorAll('.mobile-nav-item');
 
-            <span> • </span>
+        function openDrawer() {
+            if (mobileDrawer && mobileOverlay) {
+                mobileDrawer.classList.add('active');
+                mobileOverlay.classList.add('active');
+            }
+        }
 
-            <a href="https://www.linkedin.com/in/dhairya-arora-5b277a426"
-               target="_blank"
-               rel="noopener noreferrer">
-                LinkedIn
-            </a>
+        function closeDrawer() {
+            if (mobileDrawer && mobileOverlay) {
+                mobileDrawer.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+            }
+        }
 
-            <span> • </span>
+        if (hamburgerBtn) hamburgerBtn.addEventListener('click', openDrawer);
+        if (mobileCloseBtn) mobileCloseBtn.addEventListener('click', closeDrawer);
+        if (mobileOverlay) mobileOverlay.addEventListener('click', closeDrawer);
+        mobileItems.forEach(item => item.addEventListener('click', closeDrawer));
 
-            <a href="mailto:dhairyaarora20@gmail.com">
-                Email
-            </a>
+        // 4. Active Nav Highlighting
+        const navAnchors = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('section');
 
-        </div>
+        window.addEventListener('scroll', () => {
+            let currentSec = '';
+            sections.forEach(sec => {
+                const secTop = sec.offsetTop;
+                if (window.pageYOffset >= (secTop - 220)) {
+                    currentSec = sec.getAttribute('id');
+                }
+            });
 
-    </footer>
+            navAnchors.forEach(a => {
+                a.classList.remove('active');
+                if (currentSec && a.getAttribute('href') === '#' + currentSec) {
+                    a.classList.add('active');
+                }
+            });
+        });
 
+        // 5. JalSetu Case Study Modal Toggle
+        const openCaseStudyBtn = document.getElementById('openCaseStudyBtn');
+        const closeCaseStudyBtn = document.getElementById('closeCaseStudyBtn');
+        const closeCaseStudyBtn2 = document.getElementById('closeCaseStudyBtn2');
+        const caseStudyModal = document.getElementById('caseStudyModal');
 
+        function openModal() {
+            if (caseStudyModal) caseStudyModal.classList.add('active');
+        }
+
+        function closeModal() {
+            if (caseStudyModal) caseStudyModal.classList.remove('active');
+        }
+
+        if (openCaseStudyBtn) openCaseStudyBtn.addEventListener('click', openModal);
+        if (closeCaseStudyBtn) closeCaseStudyBtn.addEventListener('click', closeModal);
+        if (closeCaseStudyBtn2) closeCaseStudyBtn2.addEventListener('click', closeModal);
+        if (caseStudyModal) {
+            caseStudyModal.addEventListener('click', (e) => {
+                if (e.target === caseStudyModal) closeModal();
+            });
+        }
+    </script>
 </body>
-
 </html>
