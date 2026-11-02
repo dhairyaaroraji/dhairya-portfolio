@@ -1,0 +1,367 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Exact Color & Architectural System from Reference ─── */
+:root {
+  /* Exact Primary Background: Light Ivory/Cream Plaster Wall */
+  --background: #EAE6DF;
+  --foreground: #1A1818;
+  --muted: rgba(26, 24, 24, 0.72);
+  --subtle: rgba(26, 24, 24, 0.45);
+  --line: rgba(26, 24, 24, 0.12);
+  --surface: #DFDAD1;
+  --surface-2: #D5CFC5;
+  --accent: #6B5C5C;
+  --btn-bg: #1A1818;
+  --btn-fg: #EAE6DF;
+  --panel: #FAF8F5;
+  --green-dot: #4E8A42;
+
+  /* Architectural Environment Tones */
+  --wall-hi: #F2EFEA;
+  --wall: #EAE6DF;
+  --floor: #E0DAD2;
+  --floor-2: #D8D1C7;
+  --base: #DDD7CE;
+  --casing: #E5E0D7;
+
+  --e-line: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --e-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --e-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --e-snap: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --font-onest: 'Onest Variable', 'Onest', system-ui, sans-serif;
+}
+
+html[data-mode='dark'] {
+  --background: #1A1818;
+  --foreground: #EAE6DF;
+  --muted: rgba(234, 230, 223, 0.72);
+  --subtle: rgba(234, 230, 223, 0.45);
+  --line: rgba(196, 176, 176, 0.16);
+  --surface: #242121;
+  --surface-2: #2E2929;
+  --accent: #C4B0B0;
+  --btn-bg: #EAE6DF;
+  --btn-fg: #1A1818;
+  --panel: #221F1F;
+  --green-dot: #8FBF7A;
+
+  --wall-hi: #252222;
+  --wall: #1A1818;
+  --floor: #151313;
+  --floor-2: #0F0E0E;
+  --base: #221E1E;
+  --casing: #2C2828;
+}
+
+/* ─── Adaptive Viewport rem Grid (Direct from Reference) ─── */
+@media (max-width: 1920px) { html { font-size: 0.833333vw; } }
+@media (max-width: 1440px) { html { font-size: 1.111111vw; } }
+@media (max-width: 1024px) { html { font-size: 1.5625vw; } }
+@media (max-width: 640px)  { html { font-size: 4.444444vw; } }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-onest);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  transition: background-color 0.5s var(--e-soft), color 0.5s var(--e-soft);
+}
+
+::selection {
+  background: rgba(107, 92, 92, 0.22);
+  color: var(--foreground);
+}
+
+html[data-mode='dark'] ::selection {
+  background: rgba(196, 176, 176, 0.28);
+}
+
+.shell {
+  max-width: 88rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 5.5rem;
+  padding-right: 5.5rem;
+}
+
+@media (max-width: 1024px) {
+  .shell { padding-left: 2.5rem; padding-right: 2.5rem; }
+}
+
+@media (max-width: 640px) {
+  .shell { padding-left: 1.25rem; padding-right: 1.25rem; }
+}
+
+/* ─── Eyebrow Label ─── */
+.eyebrow {
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ─── Pill Buttons ─── */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2.2rem;
+  border-radius: 9999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.35s var(--e-spring), box-shadow 0.35s var(--e-spring), background 0.3s ease;
+  text-decoration: none;
+  border: none;
+}
+
+.pill:hover { transform: translateY(-2px); }
+
+.pill--dark {
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+.pill--outline {
+  background: transparent;
+  color: var(--foreground);
+  border: 1px solid var(--line);
+}
+
+.pill--outline:hover {
+  border-color: var(--accent);
+  background: rgba(26,24,24,0.03);
+}
+
+html[data-mode='dark'] .pill--outline:hover {
+  background: rgba(255,255,255,0.04);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 9999px;
+  border: 1px solid var(--line);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--muted);
+  background: rgba(255,255,255,0.35);
+  backdrop-filter: blur(4px);
+  white-space: nowrap;
+}
+
+html[data-mode='dark'] .chip {
+  background: rgba(0,0,0,0.25);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green-dot);
+  animation: dotPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(78, 138, 66, 0.5); }
+  50% { box-shadow: 0 0 0 7px rgba(78, 138, 66, 0); }
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 1.5rem;
+  transition: border-color 0.3s var(--e-snap), box-shadow 0.3s var(--e-snap);
+}
+
+.card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+}
+
+.section {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+@media (max-width: 640px) {
+  .section { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+}
+
+/* ─── 3D Spiral Calendar / Notebook ─── */
+.cal {
+  --cal-w: 24rem;
+  position: relative;
+  display: inline-block;
+  perspective: 22rem;
+  perspective-origin: 30% 0;
+  vertical-align: top;
+}
+
+.cal__body {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 5.2rem;
+  transform: rotateX(8deg) rotateY(-6deg);
+  transform-style: preserve-3d;
+  transition: width 0.5s var(--e-soft);
+}
+
+.cal__stand {
+  position: absolute;
+  left: 0.2em;
+  right: -0.15em;
+  top: 0.25em;
+  bottom: -0.4em;
+  border-radius: 0.4em;
+  background: linear-gradient(165deg, #3a3a3a 0%, #141414 40%, #050505 100%);
+  box-shadow: 0 0.8em 1.5em -0.35em rgba(0, 0, 0, 0.45), inset 0 0.02em 0 rgba(255, 255, 255, 0.15);
+  transform: translateZ(-0.15em);
+}
+
+.cal__stack {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.cal__page {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.35em;
+  background: linear-gradient(180deg, #FDFCF9 0%, #F3F1EC 100%);
+  box-shadow:
+    0 0.04em 0 #d8d4cb,
+    0 0.08em 0 #f6f4ef,
+    0 0.12em 0 #d0cbc1,
+    0 0.16em 0 #f2f0ea,
+    0 0.20em 0 #c8c3b8,
+    0 0.4em 0.8em -0.1em rgba(0, 0, 0, 0.22);
+}
+
+.cal__word {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding: 0.5em 0.7em 0.1em;
+  color: #1A1818;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3.2vw, 2.3rem);
+  letter-spacing: -0.035em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.cal__no {
+  position: absolute;
+  right: 0.7em;
+  bottom: 0.4em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(26, 24, 24, 0.45);
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+.cal__holes {
+  position: absolute;
+  top: 0.12em;
+  left: 0.5em;
+  right: 0.5em;
+  height: 0.12em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cal__holes i {
+  display: block;
+  width: 0.11em;
+  height: 0.11em;
+  border-radius: 50%;
+  background: #1b1b1b;
+  box-shadow: inset 0 0.01em 0.02em rgba(255, 255, 255, 0.4);
+}
+
+.cal__rings {
+  position: absolute;
+  top: -0.32em;
+  left: 0.5em;
+  right: 0.5em;
+  height: 0.55em;
+  display: flex;
+  justify-content: space-between;
+  transform: translateZ(0.08em);
+  pointer-events: none;
+}
+
+.cal__rings i {
+  display: block;
+  width: 0.11em;
+  height: 0.55em;
+  position: relative;
+}
+
+.cal__rings i::before {
+  content: "";
+  position: absolute;
+  left: -0.07em;
+  right: -0.07em;
+  top: 0;
+  bottom: 0;
+  border-radius: 0.25em;
+  border: 0.045em solid #b8934c;
+  border-left-color: #ffe69c;
+  border-top-color: #fff4ce;
+  border-right-color: #7d5b1e;
+  border-bottom-color: #9c752c;
+  filter: drop-shadow(0.01em 0.03em 0.02em rgba(0, 0, 0, 0.4));
+}
+
+/* ─── Digit Roller Counter (.dg) ─── */
+.dg {
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+  padding-right: 0.02em;
+  vertical-align: top;
+}
+
+.dg__c {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.9s cubic-bezier(0.65, 0, 0.2, 1);
+}
+
+.dg__c i {
+  display: block;
+  height: 1em;
+  font-style: normal;
+  text-align: center;
+  line-height: 1;
+}
