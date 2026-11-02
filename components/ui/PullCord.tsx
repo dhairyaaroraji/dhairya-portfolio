@@ -572,10 +572,22 @@ export default function PullCord() {
     const observer = new MutationObserver(wake);
     observer.observe(root, { attributes: true, attributeFilter: ['data-mode'] });
 
+    const onIntroComplete = () => {
+      wake();
+      for (let i = 5; i <= N; i++) {
+        if (pts[i]) {
+          pts[i].px = pts[i].x - (i / N) * 8;
+          pts[i].py = pts[i].y - (i / N) * 4;
+        }
+      }
+    };
+    window.addEventListener('intro:complete', onIntroComplete);
+
     animId = requestAnimationFrame(loop);
 
     return () => {
       cancelAnimationFrame(animId);
+      window.removeEventListener('intro:complete', onIntroComplete);
       window.removeEventListener('resize', onResize);
       window.removeEventListener('pointermove', onWindowPointerMove);
       document.removeEventListener('pointerdown', onDocPointerDown);

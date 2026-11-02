@@ -43,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -62,11 +62,6 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         {children}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `document.body.classList.add('ready');`,
-          }}
-        />
       </body>
     </html>
   );

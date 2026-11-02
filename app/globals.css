@@ -1,3 +1,5 @@
+@import 'lenis/dist/lenis.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -69,7 +71,6 @@ html[data-mode='dark'] {
 }
 
 html {
-  scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: var(--accent) transparent;
 }
@@ -83,6 +84,12 @@ body {
   overflow-x: hidden;
   transition: background-color 0.5s var(--e-soft), color 0.5s var(--e-soft);
 }
+
+/* Lock scroll during intro curtain */
+body[data-intro-active] {
+  overflow: hidden !important;
+}
+
 
 ::selection {
   background: rgba(107, 92, 92, 0.22);

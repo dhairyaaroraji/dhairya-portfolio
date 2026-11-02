@@ -10,22 +10,27 @@ import Journey from '@/components/sections/Journey';
 import Contact from '@/components/sections/Contact';
 import Footer from '@/components/sections/Footer';
 import PullCord from '@/components/ui/PullCord';
+import IntroCurtain from '@/components/ui/IntroCurtain';
+import SmoothScroll from '@/components/SmoothScroll';
 
 export default function Home() {
   return (
-    <main className="relative">
-      <PullCord />
-      <Navbar />
-      <Hero />
-      <DoorsSection />
-      <About />
-      <Projects />
-      <Skills />
-      <Hackathons />
-      <Certificates />
-      <Journey />
-      <Contact />
-      <Footer />
-    </main>
+    <SmoothScroll>
+      <main className="relative">
+        <IntroCurtain />
+        <PullCord />
+        <Navbar />
+        <Hero />
+        <DoorsSection />
+        <About />
+        <Projects />
+        <Skills />
+        <Hackathons />
+        <Certificates />
+        <Journey />
+        <Contact />
+        <Footer />
+      </main>
+    </SmoothScroll>
   );
 }
